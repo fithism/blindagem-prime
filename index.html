@@ -13,7 +13,7 @@
       --accent:#00b4d8; --accent-2:#0077b6; --accent-3:#023e8a;
     }
     *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-    html{scroll-behavior:smooth;} /* rolagem suave */
+    html{scroll-behavior:smooth;}
     body{background:var(--bg);color:var(--text);line-height:1.6}
 
     /* NAV (fixo no topo) */
@@ -22,6 +22,7 @@
       background:#1e1e1e; border-bottom:1px solid var(--line);
       display:flex; align-items:center; justify-content:center; gap:28px; z-index:1000;
       backdrop-filter:blur(6px);
+      padding: 0 20px;
     }
     /* brand agora é link clicável */
     .brand{
@@ -34,10 +35,21 @@
     nav a{color:#fff;text-decoration:none;font-weight:500;transition:.2s}
     nav a:hover{color:var(--accent)}
 
+    /* Menu toggle (mobile) */
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      z-index: 1100;
+    }
+
     /* HERO */
     header{
       position:relative; text-align:center;
-      padding:140px 20px 120px; /* espaço extra por causa do divisor */
+      padding:140px 20px 120px;
       background:linear-gradient(135deg,#14181f 0%, #0f1116 60%, #0f1116 100%);
       overflow:hidden;
       isolation:isolate;
@@ -59,7 +71,7 @@
     .hero-logo{
       width:min(340px,60vw); margin:0 auto 16px;
       filter:drop-shadow(0 12px 30px rgba(0,180,216,.18));
-      animation:floatY 2s ease-in-out infinite;
+      animation:floatY 3.5s ease-in-out infinite; /* velocidade ajustada */
     }
     @keyframes floatY{
       0%,100%{ transform:translateY(0) }
@@ -72,26 +84,25 @@
     .divider .shadow{ filter:blur(8px); opacity:.35 }
 
     header h1 {
-  margin-bottom: 10px;
-}
+      margin-bottom: 10px;
+    }
 
-header h1 .main-title {
-  display: block;
-  font-size: 2.8rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: var(--accent);
-}
+    header h1 .main-title {
+      display: block;
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--accent);
+    }
 
-header h1 .sub-title {
-  display: block;
-  font-size: 1.2rem;
-  font-style: italic;
-  font-weight: 400;
-  color: var(--accent);
-  margin-top: 1px !important; /* 👈 Ajuste aqui */
-}
-
+    header h1 .sub-title {
+      display: block;
+      font-size: 1.2rem;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--accent);
+      margin-top: 1px;
+    }
 
     header p{font-size:1.08rem; color:#bfc6cc; max-width:780px; margin:0 auto 8px}
     .cta{
@@ -163,166 +174,152 @@ header h1 .sub-title {
       .card,.step,.hero-logo{transition:none; animation:none}
     }
 
+    /* WhatsApp Flutuante */
     .whatsapp-float {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  background: var(--accent);
-  color: white;
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-  z-index: 1000;
-  transition: background 0.3s, transform 0.3s;
-}
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--accent);
+      color: white;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      z-index: 1000;
+      transition: background 0.3s, transform 0.3s;
+    }
 
-.whatsapp-float:hover {
-  background: var(--accent-2);
-  transform: scale(1.05);
-}
+    .whatsapp-float:hover {
+      background: var(--accent-2);
+      transform: scale(1.05);
+    }
 
-.whatsapp-icon {
-  width: 30px;
-  height: 30px;
-  color: white;
-}
-@media only screen and (max-width: 768px) {
-  /* Ajusta título principal */
-  header h1 .main-title {
-    font-size: 1.9rem;
-  }
+    .whatsapp-icon {
+      width: 30px;
+      height: 30px;
+      color: white;
+    }
 
-  header h1 .sub-title {
-    font-size: 1rem;
-  }
+    /* --- Mobile adjustments (global) --- */
+    @media only screen and (max-width: 768px) {
+      /* nav / menu */
+      nav {
+        justify-content: flex-end;
+        padding: 0 16px;
+      }
 
-  header p {
-    font-size: 0.96rem;
-    padding: 0 10px;
-  }
+      .menu-toggle {
+        display: block;
+        position: absolute;
+        right: 16px;
+      }
 
-  /* Ajusta espaçamento geral no hero */
-  header {
-    padding: 100px 20px 80px;
-  }
+      nav a {
+        display: none; /* escondidos por padrão no mobile */
+      }
 
-  .hero-logo {
-    width: 80%;
-    max-width: 280px;
-  }
+      nav.open a {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 12px 0;
+        border-top: 1px solid var(--line);
+        background: #1e1e1e;
+      }
 
-  /* Cards e etapas em 1 coluna */
-  .cards-grid,
-  .steps-grid {
-    grid-template-columns: 1fr !important;
-  }
+      nav.open {
+        flex-direction: column;
+        align-items: stretch;
+        height: auto;
+        padding-top: 64px; /* abaixo da barra fixa */
+      }
 
-  .card,
-  .step {
-    padding: 20px;
-  }
+      /* Hero adjustments */
+      header {
+        padding: 100px 20px 80px;
+      }
 
-  .card h3,
-  .step h3 {
-    font-size: 1rem;
-  }
+      header h1 .main-title {
+        font-size: 1.9rem;
+      }
 
-  .card p,
-  .step p {
-    font-size: 0.92rem;
-  }
+      header h1 .sub-title {
+        font-size: 1rem;
+      }
 
-  /* Formulário responsivo */
-  form {
-    padding: 0 10px;
-  }
+      header p {
+        font-size: 0.96rem;
+        padding: 0 10px;
+      }
 
-  input,
-  textarea {
-    font-size: 1rem;
-    padding: 12px;
-  }
+      .hero-logo {
+        width: 80%;
+        max-width: 280px;
+      }
 
-  button {
-    padding: 14px;
-    font-size: 1rem;
-  }
+      /* Cards in single column for small screens */
+      .cards-grid,
+      .steps-grid {
+        grid-template-columns: 1fr !important;
+      }
 
-  .cta {
-    font-size: 1rem;
-    padding: 12px 20px;
-  }
+      .card,
+      .step {
+        padding: 20px;
+      }
 
-  /* WhatsApp botão menor no mobile */
-  .whatsapp-float {
-    width: 48px;
-    height: 48px;
-    bottom: 16px;
-    right: 16px;
-  }
+      .card h3,
+      .step h3 {
+        font-size: 1rem;
+      }
 
-  .whatsapp-icon {
-    width: 24px;
-    height: 24px;
-  }
+      .card p,
+      .step p {
+        font-size: 0.92rem;
+      }
 
-  /* Depoimentos também ajustam */
-  .testimonial {
-    font-size: 0.92rem;
-    padding: 16px;
-  }
-}
-/* Esconde botão no desktop */
-.menu-toggle {
-  display: none;
-  font-size: 1.8rem;
-  background: none;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-  z-index: 1100; /* acima do nav */
-}
+      /* Form / CTA */
+      form {
+        padding: 0 10px;
+      }
 
+      input,
+      textarea {
+        font-size: 1rem;
+        padding: 12px;
+      }
 
-/* Mobile */
-@media (max-width: 768px) {
-  nav {
-    justify-content: flex-end;
-    padding: 0 16px;
-  }
+      button {
+        padding: 14px;
+        font-size: 1rem;
+      }
 
-  .menu-toggle {
-    display: block;
-    position: absolute;
-    right: 16px;
-  }
+      .cta {
+        font-size: 1rem;
+        padding: 12px 20px;
+      }
 
-  nav a {
-    display: none; /* escondidos por padrão no mobile */
-  }
+      .whatsapp-float {
+        width: 48px;
+        height: 48px;
+        bottom: 16px;
+        right: 16px;
+      }
 
-  nav.open a {
-    display: block;
-    width: 100%;
-    text-align: center;
-    padding: 12px 0;
-    border-top: 1px solid var(--line);
-    background: #1e1e1e;
-  }
+      .whatsapp-icon {
+        width: 24px;
+        height: 24px;
+      }
 
-  nav.open {
-    flex-direction: column;
-    align-items: stretch;
-    height: auto;
-    padding-top: 64px; /* abaixo da barra fixa */
-  }
-}
-
+      .testimonial {
+        font-size: 0.92rem;
+        padding: 16px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -343,11 +340,11 @@ header h1 .sub-title {
   </nav>
 
   <header id="topo">
-  <img class="hero-logo" src="logo.png" alt="Blindagem Prime — Alef Ethical Hacker" />
-  <h1>
-    <span class="main-title">BLINDAGEM PRIME</span>
-    <span class="sub-title">Proteja sua vida digital</span>
-  </h1>
+    <img class="hero-logo" src="logo.png" alt="Blindagem Prime — Alef Ethical Hacker" />
+    <h1>
+      <span class="main-title">BLINDAGEM PRIME</span>
+      <span class="sub-title">Proteja sua vida digital</span>
+    </h1>
     <p>Você tranca sua casa todos os dias. Mas deixa seu celular, com tudo que tem de mais valioso, completamente aberto? Blindagem Prime é a chave que separa segurança de ingenuidade.</p>
     <a href="#contato" class="cta">Quero ser Blindado</a>
 
@@ -373,49 +370,80 @@ header h1 .sub-title {
     <div class="cards-grid">
       <div class="card left">
         <span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"></rect><line x1="7" y1="8" x2="17" y2="8"></line><line x1="7" y1="12" x2="13" y2="12"></line><line x1="7" y1="16" x2="10" y2="16"></line></svg></span>
-        <h3>Instagram vive caindo?</h3><p>Mantemos seu perfil no ar, mesmo quando é denunciado.</p>
+        <h3>Instagram vive caindo?</h3>
+        <p>Mantemos o perfil no ar mesmo diante de denúncias, bugs do sistema ou remoções indevidas — reagimos rápido para restaurar e proteger.</p>
       </div>
+
       <div class="card center">
         <span class="icon"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7l8-4z"></path><path d="M9 12l2 2 4-4"></path></svg></span>
-        <h3>WhatsApp sendo banido?</h3><p>Reforçamos sua conta e evitamos bloqueios indesejados.</p>
+        <h3>WhatsApp sendo banido?</h3>
+        <p>Reforçamos sua conta e evitamos bloqueios indesejados.</p>
       </div>
+
       <div class="card right">
         <span class="icon"><svg viewBox="0 0 24 24"><circle cx="7" cy="12" r="3"></circle><path d="M10 12h9l-2 2 2 2-2 2"></path></svg></span>
-        <h3>Conta hackeada?</h3><p>Recuperamos rápido e blindamos contra novas invasões.</p>
+        <h3>Conta hackeada?</h3>
+        <p>Recuperamos rápido e blindamos contra novas invasões.</p>
       </div>
+
       <div class="card left">
         <span class="icon"><svg viewBox="0 0 24 24"><path d="M12 3l9 16H3L12 3z"></path><line x1="12" y1="10" x2="12" y2="14"></line><line x1="12" y1="17" x2="12" y2="17"></line></svg></span>
-        <h3>Códigos suspeitos?</h3><p>Bloqueamos acessos estranhos antes que entrem.</p>
+        <h3>Códigos suspeitos?</h3>
+        <p>Bloqueamos acessos estranhos antes que entrem.</p>
       </div>
+
       <div class="card center">
         <span class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><path d="M21 17l-6-6-4 4-2-2-4 4"></path></svg></span>
-        <h3>Vazamento de fotos?</h3><p>Reagimos rápido e criamos proteção contínua.</p>
+        <h3>Vazamento de fotos?</h3>
+        <p>Reagimos rápido e criamos proteção contínua.</p>
       </div>
+
       <div class="card right">
         <span class="icon"><svg viewBox="0 0 24 24"><path d="M2 8a16 16 0 0 1 20 0"></path><path d="M5 12a11 11 0 0 1 14 0"></path><path d="M8.5 16a6 6 0 0 1 7 0"></path><circle cx="12" cy="19" r="1"></circle></svg></span>
-        <h3>Wi-Fi vulnerável?</h3><p>Blindamos sua rede contra intrusos e espiões.</p>
+        <h3>Wi-Fi vulnerável?</h3>
+        <p>Blindamos sua rede contra intrusos e espiões.</p>
       </div>
+
       <div class="card center">
         <span class="icon"><svg viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"></path><circle cx="12" cy="12" r="3"></circle></svg></span>
-        <h3>Espionagem?</h3><p>Investigamos e bloqueamos para preservar sua privacidade.</p>
+        <h3>Espionagem?</h3>
+        <p>Investigamos e bloqueamos para preservar sua privacidade.</p>
       </div>
     </div>
   </section>
 
   <section id="como-funciona">
     <h2>Como funciona</h2>
+
     <div class="steps-grid">
+      <!-- Passo 1 -->
       <div class="step left">
-        <span class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 12l6-6"></path><path d="M12 3v3"></path><path d="M21 12h-3"></path></svg></span>
-        <h3>Diagnóstico rápido</h3><p>Você explica sua situação, eu detecto riscos e proponho soluções.</p>
+        <span class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 12l6-6"></path></svg></span>
+        <h3>Diagnóstico & Perfis de risco</h3>
+        <p>
+          Começo com um diagnóstico minucioso: análise de logs, vetores de ataque e pontos fracos.
+          Identifico **perfís de risco** (ex.: cassinos, influencers, empresas com conteúdo sensível) — esses perfis exigem um trabalho contínuo para manter contas no ar mesmo com publicações frequentes (até 7 posts/semana, quando necessário).
+        </p>
       </div>
+
+      <!-- Passo 2 -->
       <div class="step center">
-        <span class="icon"><svg viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5z"></path><path d="M21 12l-9 5-9-5"></path><path d="M21 16l-9 5-9-5"></path></svg></span>
-        <h3>Blindagem completa</h3><p>Contas, dispositivos e redes configurados para máxima segurança.</p>
+        <span class="icon"><svg viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5z"></path></svg></span>
+        <h3>Blindagem Técnica</h3>
+        <p>
+          Na prática aplico medidas técnicas para proteger e recuperar suas contas: remoção de acessos maliciosos, bloqueio por IP quando necessário, ajustes de configuração em servidores e bancos de dados,
+          e instalação (com seu consentimento) de ferramentas de gestão/autorizadas para manutenção e recuperação. Tudo documentado e seguro.
+        </p>
       </div>
+
+      <!-- Passo 3 -->
       <div class="step right">
-        <span class="icon"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M7 8h7"></path><path d="M7 12h5"></path><path d="M15 16l2 2 4-4"></path></svg></span>
-        <h3>Entrega clara</h3><p>Receba um PDF organizado com seus acessos e códigos reserva.</p>
+        <span class="icon"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M7 8h7"></path></svg></span>
+        <h3>Entrega & Planilha de Acessos (brinde)</h3>
+        <p>
+          Você recebe um pacote claro de entrega: relatório das ações, recomendações e — como **brinde** — uma **Planilha de Acessos** contendo
+          plataforma, usuário, senha e todas as medidas de recuperação/proteção. A planilha é um bônus para clientes blindados: útil para controle e recuperação rápida em caso de problemas.
+        </p>
       </div>
     </div>
   </section>
@@ -438,6 +466,10 @@ header h1 .sub-title {
     </form>
     <div style="text-align:center;margin-top:20px;">
       <a href="https://wa.me/5531982738115" target="_blank" class="cta">Falar no WhatsApp</a>
+    </div>
+
+    <div style="max-width:720px;margin:18px auto 0;color:var(--muted);text-align:center;font-size:.95rem">
+      <strong>Bônus:</strong> Ao garantir sua blindagem, você recebe gratuitamente a Planilha de Acessos (plataforma, usuário, senha e orientações de recuperação/proteção) — documento para controle e recuperação rápida.
     </div>
   </section>
 
@@ -484,40 +516,41 @@ header h1 .sub-title {
       window.addEventListener('scroll', onScroll, {passive:true});
       onScroll();
     })();
+
+    // Menu toggle (abre/fecha com troca de ícone)
+    (function(){
+      const menuToggle = document.querySelector(".menu-toggle");
+      const nav = document.querySelector("nav");
+
+      menuToggle.addEventListener("click", () => {
+        nav.classList.toggle("open");
+
+        if (nav.classList.contains("open")) {
+          menuToggle.textContent = "✖";
+          menuToggle.setAttribute("aria-label", "Fechar menu");
+        } else {
+          menuToggle.textContent = "☰";
+          menuToggle.setAttribute("aria-label", "Abrir menu");
+        }
+      });
+
+      // fecha o menu ao clicar em um link (mobile)
+      document.querySelectorAll("nav a").forEach(link => {
+        link.addEventListener("click", () => {
+          nav.classList.remove("open");
+          menuToggle.textContent = "☰";
+          menuToggle.setAttribute("aria-label", "Abrir menu");
+        });
+      });
+    })();
   </script>
-<a href="https://wa.me/5531982738115" class="whatsapp-float" target="_blank" aria-label="Abrir conversa no WhatsApp">
-  <svg class="whatsapp-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path fill="currentColor" d="M16 .396C7.163.396 0 7.56 0 16.396c0 2.89.765 5.733 2.212 8.24L.17 31.372l6.915-2.01a15.96 15.96 0 008.915 2.634c8.837 0 16-7.163 16-16 0-8.837-7.163-15.999-16-15.999z"/>
-    <path fill="#fff" d="M24.496 20.68c-.367-.183-2.16-1.064-2.495-1.185-.334-.122-.578-.183-.823.183-.244.366-.945 1.184-1.16 1.427-.213.244-.427.274-.794.092-.367-.183-1.552-.573-2.956-1.827-1.093-.975-1.83-2.178-2.045-2.544-.213-.366-.023-.563.16-.745.165-.164.367-.427.55-.64.184-.213.244-.366.366-.61.122-.244.061-.458-.03-.64-.092-.183-.823-1.984-1.127-2.722-.297-.715-.598-.615-.823-.627l-.7-.012c-.244 0-.64.092-.976.427-.335.335-1.28 1.25-1.28 3.048s1.31 3.537 1.49 3.783c.183.244 2.518 3.844 6.1 5.39.854.369 1.519.59 2.038.755.855.272 1.63.234 2.243.142.685-.102 2.16-.88 2.466-1.73.305-.85.305-1.58.213-1.73-.091-.152-.335-.244-.7-.427z"/>
-  </svg>
-</a>
-<script>
-  const menuToggle = document.querySelector(".menu-toggle");
-  const nav = document.querySelector("nav");
 
-  menuToggle.addEventListener("click", () => {
-    nav.classList.toggle("open");
-
-    // troca ícone entre ☰ e ✖
-    if (nav.classList.contains("open")) {
-      menuToggle.textContent = "✖"; 
-      menuToggle.setAttribute("aria-label", "Fechar menu");
-    } else {
-      menuToggle.textContent = "☰";
-      menuToggle.setAttribute("aria-label", "Abrir menu");
-    }
-  });
-
-  // fecha o menu automaticamente ao clicar em um link
-  document.querySelectorAll("nav a").forEach(link => {
-    link.addEventListener("click", () => {
-      nav.classList.remove("open");
-      menuToggle.textContent = "☰";
-      menuToggle.setAttribute("aria-label", "Abrir menu");
-    });
-  });
-</script>
-
+  <!-- WhatsApp float (ícone oficial em branco) -->
+  <a href="https://wa.me/5531982738115" class="whatsapp-float" target="_blank" aria-label="Abrir conversa no WhatsApp">
+    <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" aria-hidden="true">
+      <path fill="white" d="M380.9 97.1C339-13.4 234.5-39.9 151.2 13.6c-84 53.7-106.2 160.3-49.6 241.5L3.5 464l213.4-98.6c77.2 33.7 167.4-11.1 196.2-92.6 26.2-72.6-3.4-157.1-77.3-176.7zm-83 263.4c-31.6 0-62.6-9.2-89-26.3l-6.4-4-66.1 30.5 13.4-67-4.3-6.7c-36.6-56.9-17.8-132.5 41.1-163.4 59-31.1 133.1-3.6 155.2 59.3 23.1 65.9-19.9 138.7-96.1 138.7z"/>
+    </svg>
+  </a>
 
 </body>
 </html>
