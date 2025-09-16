@@ -59,7 +59,7 @@
     .hero-logo{
       width:min(340px,60vw); margin:0 auto 16px;
       filter:drop-shadow(0 12px 30px rgba(0,180,216,.18));
-      animation:floatY 5.5s ease-in-out infinite;
+      animation:floatY 2s ease-in-out infinite;
     }
     @keyframes floatY{
       0%,100%{ transform:translateY(0) }
@@ -71,7 +71,28 @@
     .divider svg{ display:block; width:100%; height:90px }
     .divider .shadow{ filter:blur(8px); opacity:.35 }
 
-    header h1{font-size:2.4rem; color:var(--accent); margin-bottom:10px}
+    header h1 {
+  margin-bottom: 10px;
+}
+
+header h1 .main-title {
+  display: block;
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--accent);
+}
+
+header h1 .sub-title {
+  display: block;
+  font-size: 1.2rem;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+  margin-top: 1px !important; /* 👈 Ajuste aqui */
+}
+
+
     header p{font-size:1.08rem; color:#bfc6cc; max-width:780px; margin:0 auto 8px}
     .cta{
       display:inline-block; margin-top:18px; padding:14px 28px; border-radius:10px;
@@ -141,11 +162,174 @@
       .hidden{opacity:1; transform:none} .show{opacity:1; transform:none}
       .card,.step,.hero-logo{transition:none; animation:none}
     }
+
+    .whatsapp-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--accent);
+  color: white;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.whatsapp-float:hover {
+  background: var(--accent-2);
+  transform: scale(1.05);
+}
+
+.whatsapp-icon {
+  width: 30px;
+  height: 30px;
+  color: white;
+}
+@media only screen and (max-width: 768px) {
+  /* Ajusta título principal */
+  header h1 .main-title {
+    font-size: 1.9rem;
+  }
+
+  header h1 .sub-title {
+    font-size: 1rem;
+  }
+
+  header p {
+    font-size: 0.96rem;
+    padding: 0 10px;
+  }
+
+  /* Ajusta espaçamento geral no hero */
+  header {
+    padding: 100px 20px 80px;
+  }
+
+  .hero-logo {
+    width: 80%;
+    max-width: 280px;
+  }
+
+  /* Cards e etapas em 1 coluna */
+  .cards-grid,
+  .steps-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .card,
+  .step {
+    padding: 20px;
+  }
+
+  .card h3,
+  .step h3 {
+    font-size: 1rem;
+  }
+
+  .card p,
+  .step p {
+    font-size: 0.92rem;
+  }
+
+  /* Formulário responsivo */
+  form {
+    padding: 0 10px;
+  }
+
+  input,
+  textarea {
+    font-size: 1rem;
+    padding: 12px;
+  }
+
+  button {
+    padding: 14px;
+    font-size: 1rem;
+  }
+
+  .cta {
+    font-size: 1rem;
+    padding: 12px 20px;
+  }
+
+  /* WhatsApp botão menor no mobile */
+  .whatsapp-float {
+    width: 48px;
+    height: 48px;
+    bottom: 16px;
+    right: 16px;
+  }
+
+  .whatsapp-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Depoimentos também ajustam */
+  .testimonial {
+    font-size: 0.92rem;
+    padding: 16px;
+  }
+}
+/* Esconde botão no desktop */
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  z-index: 1100; /* acima do nav */
+}
+
+
+/* Mobile */
+@media (max-width: 768px) {
+  nav {
+    justify-content: flex-end;
+    padding: 0 16px;
+  }
+
+  .menu-toggle {
+    display: block;
+    position: absolute;
+    right: 16px;
+  }
+
+  nav a {
+    display: none; /* escondidos por padrão no mobile */
+  }
+
+  nav.open a {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 12px 0;
+    border-top: 1px solid var(--line);
+    background: #1e1e1e;
+  }
+
+  nav.open {
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    padding-top: 64px; /* abaixo da barra fixa */
+  }
+}
+
   </style>
 </head>
 <body>
 
   <nav>
+    <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+
     <!-- BRAND clicável: volta ao topo (#topo) -->
     <a class="brand" href="#topo" aria-label="Voltar ao início">
       <img src="logo.png" alt="Blindagem Prime logo pequena"/>
@@ -159,8 +343,11 @@
   </nav>
 
   <header id="topo">
-    <img class="hero-logo" src="logo.png" alt="Blindagem Prime — Alef Ethical Hacker" />
-    <h1>Blindagem Prime – Proteja sua vida digital</h1>
+  <img class="hero-logo" src="logo.png" alt="Blindagem Prime — Alef Ethical Hacker" />
+  <h1>
+    <span class="main-title">BLINDAGEM PRIME</span>
+    <span class="sub-title">Proteja sua vida digital</span>
+  </h1>
     <p>Você tranca sua casa todos os dias. Mas deixa seu celular, com tudo que tem de mais valioso, completamente aberto? Blindagem Prime é a chave que separa segurança de ingenuidade.</p>
     <a href="#contato" class="cta">Quero ser Blindado</a>
 
@@ -207,10 +394,6 @@
       <div class="card right">
         <span class="icon"><svg viewBox="0 0 24 24"><path d="M2 8a16 16 0 0 1 20 0"></path><path d="M5 12a11 11 0 0 1 14 0"></path><path d="M8.5 16a6 6 0 0 1 7 0"></path><circle cx="12" cy="19" r="1"></circle></svg></span>
         <h3>Wi-Fi vulnerável?</h3><p>Blindamos sua rede contra intrusos e espiões.</p>
-      </div>
-      <div class="card left">
-        <span class="icon"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"></circle><circle cx="16" cy="11" r="3"></circle><path d="M2 20a6 6 0 0 1 12 0"></path><path d="M12 20a6 6 0 0 1 10 0"></path></svg></span>
-        <h3>Golpes em familiares?</h3><p>Protegemos também quem você ama contra fraudes.</p>
       </div>
       <div class="card center">
         <span class="icon"><svg viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"></path><circle cx="12" cy="12" r="3"></circle></svg></span>
@@ -302,5 +485,39 @@
       onScroll();
     })();
   </script>
+<a href="https://wa.me/5531982738115" class="whatsapp-float" target="_blank" aria-label="Abrir conversa no WhatsApp">
+  <svg class="whatsapp-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M16 .396C7.163.396 0 7.56 0 16.396c0 2.89.765 5.733 2.212 8.24L.17 31.372l6.915-2.01a15.96 15.96 0 008.915 2.634c8.837 0 16-7.163 16-16 0-8.837-7.163-15.999-16-15.999z"/>
+    <path fill="#fff" d="M24.496 20.68c-.367-.183-2.16-1.064-2.495-1.185-.334-.122-.578-.183-.823.183-.244.366-.945 1.184-1.16 1.427-.213.244-.427.274-.794.092-.367-.183-1.552-.573-2.956-1.827-1.093-.975-1.83-2.178-2.045-2.544-.213-.366-.023-.563.16-.745.165-.164.367-.427.55-.64.184-.213.244-.366.366-.61.122-.244.061-.458-.03-.64-.092-.183-.823-1.984-1.127-2.722-.297-.715-.598-.615-.823-.627l-.7-.012c-.244 0-.64.092-.976.427-.335.335-1.28 1.25-1.28 3.048s1.31 3.537 1.49 3.783c.183.244 2.518 3.844 6.1 5.39.854.369 1.519.59 2.038.755.855.272 1.63.234 2.243.142.685-.102 2.16-.88 2.466-1.73.305-.85.305-1.58.213-1.73-.091-.152-.335-.244-.7-.427z"/>
+  </svg>
+</a>
+<script>
+  const menuToggle = document.querySelector(".menu-toggle");
+  const nav = document.querySelector("nav");
+
+  menuToggle.addEventListener("click", () => {
+    nav.classList.toggle("open");
+
+    // troca ícone entre ☰ e ✖
+    if (nav.classList.contains("open")) {
+      menuToggle.textContent = "✖"; 
+      menuToggle.setAttribute("aria-label", "Fechar menu");
+    } else {
+      menuToggle.textContent = "☰";
+      menuToggle.setAttribute("aria-label", "Abrir menu");
+    }
+  });
+
+  // fecha o menu automaticamente ao clicar em um link
+  document.querySelectorAll("nav a").forEach(link => {
+    link.addEventListener("click", () => {
+      nav.classList.remove("open");
+      menuToggle.textContent = "☰";
+      menuToggle.setAttribute("aria-label", "Abrir menu");
+    });
+  });
+</script>
+
+
 </body>
 </html>
