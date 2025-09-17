@@ -178,27 +178,27 @@
 
     /* WhatsApp Flutuante */
     .whatsapp-float {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: var(--accent);
-      color: white;
-      width: 58px;
-      height: 58px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-      z-index: 1000;
-      transition: background 0.3s, transform 0.3s;
-    }
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #25D366;   /* 🟢 verde oficial WhatsApp */
+  color: white;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  transition: background 0.3s, transform 0.3s;
+}
 
-    .whatsapp-float:hover {
-      background: var(--accent-2);
-      transform: scale(1.05);
-    }
+.whatsapp-float:hover {
+  background: #1DA851; /* 🟢 verde mais escuro no hover */
+  transform: scale(1.05);
+}
 
     .whatsapp-icon {
       width: 30px;
@@ -574,12 +574,13 @@
     })();
   </script>
 
-  <!-- WhatsApp float (ícone oficial em branco) -->
-  <a href="https://wa.me/5531982738115" class="whatsapp-float" target="_blank" aria-label="Abrir conversa no WhatsApp">
-    <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" aria-hidden="true">
-      <path fill="white" d="M380.9 97.1C339-13.4 234.5-39.9 151.2 13.6c-84 53.7-106.2 160.3-49.6 241.5L3.5 464l213.4-98.6c77.2 33.7 167.4-11.1 196.2-92.6 26.2-72.6-3.4-157.1-77.3-176.7zm-83 263.4c-31.6 0-62.6-9.2-89-26.3l-6.4-4-66.1 30.5 13.4-67-4.3-6.7c-36.6-56.9-17.8-132.5 41.1-163.4 59-31.1 133.1-3.6 155.2 59.3 23.1 65.9-19.9 138.7-96.1 138.7z"/>
-    </svg>
-  </a>
+  <!-- WhatsApp float (ícone oficial) -->
+<a href="https://wa.me/5531982738115" class="whatsapp-float" target="_blank" aria-label="Abrir conversa no WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="28" height="28">
+    <path fill="#fff" d="M19.11 17.06c-.29-.14-1.71-.84-1.98-.94-.27-.1-.47-.14-.67.14-.2.29-.77.94-.94 1.13-.17.2-.35.22-.64.08-.29-.14-1.23-.45-2.34-1.45-.86-.77-1.45-1.72-1.62-2.01-.17-.29-.02-.45.13-.59.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.2.05-.36-.02-.51-.07-.14-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.51.07-.77.36s-1.01.98-1.01 2.38 1.03 2.76 1.18 2.95c.15.2 2.03 3.09 4.92 4.33.69.3 1.23.48 1.65.61.69.22 1.31.19 1.8.11.55-.08 1.71-.7 1.95-1.38.24-.68.24-1.26.17-1.38-.07-.12-.26-.19-.55-.33M16.01 27.55h-.01a11.55 11.55 0 0 1-5.89-1.61l-.42-.25-4.37 1.14 1.17-4.26-.28-.44a11.57 11.57 0 0 1-1.76-6.09c0-6.42 5.23-11.64 11.65-11.64 3.11 0 6.04 1.21 8.24 3.4a11.56 11.56 0 0 1 3.42 8.25c-.01 6.42-5.23 11.64-11.65 11.64m9.9-21.54A13.91 13.91 0 0 0 16.02 2a13.94 13.94 0 0 0-13.94 13.93c0 2.46.65 4.86 1.88 6.97L2 30l7.28-1.91a13.95 13.95 0 0 0 6.74 1.72h.01c7.7 0 13.96-6.26 13.96-13.95 0-3.73-1.46-7.24-4.08-9.85"/>
+  </svg>
+</a>
+
 
 </body>
 </html>
